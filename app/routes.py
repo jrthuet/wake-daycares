@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt, mpld3
 # import requests
 import pandas as pd
 import numpy as np
+import os
+from dotenv import load_dotenv
 # import folium
 # import tabula
 # import requests
@@ -181,9 +183,10 @@ def confirm_address():
 @login_required
 def tract_profile():
     data = Address.query.filter_by(id=session['confirm_address_id']).first()
-    map = f"https://www.google.com/maps/embed/v1/search?key=AIzaSyAaBBwbAyu8utq5r9cl7u3K690eAg4CLSU&q=Daycares+in+{data.zip}+{data.address}"
+    apikey = os.environ.get('GOOGLE_API_KEY')
+    map = f"https://www.google.com/maps/embed/v1/search?key=+{apikey}+&q=Daycares+in+{data.zip}+{data.address}"
+
     zipcode = data.zip
-    # zipcode = data.zipcode
     Tract = data.census_tract
 
     df_cap = pd.read_csv('wake_centers_cap.csv')
@@ -479,7 +482,7 @@ def tract_profile():
     plt.xticks(x_pos, lics)
     plt.xlabel("License Type")
     plt.ylabel("Number of Licenses")
-    plt.title("Number of Licenses Currently in he Zipcode")
+    plt.title("Number of Licenses Currently in the Zipcode")
     dc_bar = mpld3.fig_to_html(fig5)
 
     df_income = df_income.rename(columns={'Tract Code': 'tract', 'Tract Income Level': "ilevel",
