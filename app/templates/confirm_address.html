@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+  <h2>Address Confirmation</h2>
+ <hr>
+ <table class="table">
+    <thead>
+      <tr>
+        <th>Address</th>
+        <th>Census Tract</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+      </tr>
+    </thead>
+    <tbody>
+<!--      {% for loc in data %}-->
+      <tr>
+        <td>{{ data[0]['matchedAddress'] }}</td>
+        <td>{{ data[0]['geographies']['Census Tracts'][0]['BASENAME'] }}</td>
+        <td>{{ data[0]['geographies']['Census Tracts'][0]['CENTLAT'] }}</td>
+        <td>{{ data[0]['geographies']['Census Tracts'][0]['CENTLON'] }}</td>
+
+        <td scope="row"></td>
+        <td></td>
+      </tr>
+
+
+<!--      {% endfor %}-->
+
+   <a class="btn btn-large btn-primary" data-toggle="confirmation" data-title="Confirm Address"
+   href="{{url_for('tract_profile')}}" target="_blank">Confirm Address</a><br><br>
+   <a class="btn btn-large btn-primary" href="{{url_for('new_address')}}"  role="button">Go Back</a></div-class>
+
+
+
+
+{% endblock %}

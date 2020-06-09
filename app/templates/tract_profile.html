@@ -1,0 +1,238 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!--<!DOCTYPE html>-->
+<html>
+<head>
+<style>
+.grid-container-two {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  background-color: 'white';
+<!--  border: 1px solid black;-->
+  padding: 10px;
+}
+.grid-container-three {
+  display: grid;
+  grid-template-columns: auto auto 10em;
+  grid-gap: 5px;
+  background-color: 'white';
+  padding: 0px;
+}
+}
+.grid-container-one {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  background-color: 'grey';
+  border: 1px solid black;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+  <h2>Daycare Site Analysis: Zipcode and Census Tract Report</h2>
+
+    <div class="col-md-12">
+     <hr>
+      <table class="table">
+          <col style="width:70%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:10%">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Census Tract</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ data.address }}</td>
+            <td>{{ data.census_tract }}</td>
+            <td>{{ data.latitude }}</td>
+            <td>{{ data.longitude }}</td>
+
+            <td scope="row"></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+          </div>
+
+
+<div class="grid-container-two">
+  <div>
+       <h6>Map of Existing Daycares and the Potential Location</h6>
+                    <iframe
+                  width="500"
+                  height="400"
+                  frameborder="0" style="border:0"
+                  src={{ map }} allowfullscreen>
+                    </iframe>
+  </div>
+  <div>
+      <h6>Statistics on Daycares in Zipcode {{data.zip}}</h6>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for graph in dc_bar %}
+                        {{graph|safe}}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+  </div>
+</div>
+<p>{{ RankState }}</p>
+<div class="grid-container-two">
+     <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for graph in zip_comp_bar %}
+                        {{graph|safe}}
+                    {% endfor %}
+                </div>
+            </div>
+     </div>
+  <div>
+      <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for graph in my_add_zip %}
+                        {{graph|safe}}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+
+<div class="grid-container-two">
+      <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for graph in my_zip_stats %}
+                        {{graph|safe}}
+                    {% endfor %}
+                </div>
+            </div>
+          <p>{{ needsState }}</p>
+        </div>
+    <div class="container">
+        <p>{{ per_mes }}</p>
+            <div class="row">
+                <div class="col">
+                    {% for graph in circle_chart %}
+                        {{graph|safe}}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+  </div>
+</body>
+</html>
+
+
+
+
+<!--<style>-->
+<!--p {-->
+<!--border-style: solid;-->
+<!--vertical-align: 20%;-->
+<!--}-->
+<!--</style>-->
+
+
+
+<!--    <div class="parent-container d-flex">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <h6>Map of Existing Daycares and the Potential Location</h6>-->
+<!--                    <iframe-->
+<!--                  width="500"-->
+<!--                  height="400"-->
+<!--                  frameborder="0" style="border:0"-->
+<!--                  src={{ map }} allowfullscreen>-->
+<!--                    </iframe>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <h6>Statistics on Daycares in the Zipcode</h6>-->
+<!--                    {% for graph in my_zip_dcs %}-->
+<!--                        {{graph|safe}}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--<div class="parent-container d-flex">-->
+
+
+<!--            <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <p>-->
+<!--                    {{ RankState }}-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    <div class="parent-container d-flex">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col">-->
+<!--                    <h6>Statistics on Daycare  Enrollment and Population</h6>-->
+<!--                    {% for graph in my_zip_stats %}-->
+<!--                        {{graph|safe}}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+{% endblock %}
+
+<!--        'data': data,-->
+<!--        'map': map,-->
+<!--        'my_zip_stats': [my_zip_stats],-->
+<!--        'RankState': RankState,-->
+<!--        'zip_comp_bar': [zip_comp_bar],-->
+<!--        'my_add_zip': [my_add_zip]-->
+
+<!--   <h6>Licenses Currently Active in the Zipcode</h6>-->
+<!--    <p>-->
+<!--    <hr>-->
+<!--      <table class="table">-->
+<!--        <thead>-->
+<!--          <tr>-->
+<!--            <th>5 Star</th>-->
+<!--            <th>Census Tract</th>-->
+<!--            <th>Latitude</th>-->
+<!--            <th>Longitude</th>-->
+<!--          </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--          <tr>-->
+<!--            <td>{{ zlic_zip['5 Star C 2C'] }}</td>-->
+<!--            <td>{{ data.census_tract }}</td>-->
+<!--            <td>{{ data.latitude }}</td>-->
+<!--            <td>{{ data.longitude }}</td>-->
+
+<!--            <td scope="row"></td>-->
+<!--            <td></td>-->
+<!--          </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </p>-->

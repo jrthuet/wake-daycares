@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+  <h2>Welcome to the Wake County Daycare Location Finder</h2>
+
+<ul>
+
+  <div><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d319407.14626061905!2d-78.56086386945708!3d35.797666!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ac88ccfabb3d93%3A0xa41a40b5c635c72c!2sWake%20County%2C%20NC!5e0!3m2!1sen!2sus!4v1590108027742!5m2!1sen!2sus" width="800" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  </div>
+
+</ul>
+<!--  <ul>-->
+<!--    {% for user in users %}-->
+<!--        <li>Hello, {{ user.email }}!</li>-->
+<!--    {% endfor %}-->
+<!--  </ul>-->
+<!--  <hr>-->
+<!--  <table class="table">-->
+<!--    <thead>-->
+<!--      <tr>-->
+<!--        <th>POS</th>-->
+<!--        <th>NO</th>-->
+<!--        <th>NAME</th>-->
+<!--        <th>CONSTRUCTOR</th>-->
+<!--        <th>Q1</th>-->
+<!--        <th>Q2</th>-->
+<!--        <th>Q3</th>-->
+<!--      </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--      {% for driver in data %}-->
+<!--      <tr>-->
+<!--        <td>{{ driver.position }}</td>-->
+<!--        <td>{{ driver.number }}</td>-->
+<!--        <td>{{ driver.Driver.giveName }} {{ driver.Driver.familyName }}</td>-->
+<!--        <td>{{ driver.Constructor.name }}</td>-->
+<!--        <td>{{ driver.Q1 }}</td>-->
+<!--        <td>{{ driver.Q2 }}</td>-->
+<!--        <td>{{ driver.Q3 }}</td>-->
+<!--        <td scope="row"></td>-->
+<!--        <td></td>-->
+<!--      </tr>-->
+<!--      {% endfor %}-->
+
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+  <h2>This is the registration page</h2>
+  <hr>
+  {{ some_data_to_pass }}
+  <div class="col-md-6">
+  <form action="{{ url_for('register')}}" method='POST'>
+      <!-- {{ form.hidden_tag() }} -->
+      <div class="form-group">
+        {{ form.email(class="form-control",placeholder="Type email here...")}}
+    </div>
+    <div class="form-group">
+        {{ form.password(class="form-control",placeholder="Type password here...")}}
+    </div>
+    <div class="form-group">
+        {{ form.confirm_password(class="form-control",placeholder="Please confirm password")}}
+    </div>
+
+    {{ form.submit(class="btn btn-primary btn-block")}}
+</div>
+  </form>
+
+{% endblock %}
